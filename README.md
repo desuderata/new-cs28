@@ -42,6 +42,3 @@ Robert Pringle - [2304777P@student.gla.ac.uk](2304777P@student.gla.ac.uk)
 
 ## Acknowledgements
 [Make a README](https://www.makeareadme.com/)
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
