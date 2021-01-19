@@ -17,6 +17,16 @@
 
 {% block body_block %}
 <div class="container p-3 my-3 border">
+
+<!-- Test if login is successful -->
+{% if user.is_authenticated %}
+    <h5>You're Logged in</h5>
+{% else %}
+    <h5>You're <b>NOT</b> Logged in</h5>
+{% endif %}
+<hr style="width:100%; text-align:left; margin-left:0">
+<!-- End of temp test -->
+
 <h3>Nobody here but us chickens</h3>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
