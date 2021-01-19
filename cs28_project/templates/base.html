@@ -7,6 +7,8 @@
         todo:
             center footer elements like in figma prototype (kinda done)
             make footer stay at the bottom
+            menu button expands vertical icon sidebar
+            add serch bar to navbar
 
         Author: Yee Hou, Teoh (2471020t)
         Filename: base.html
@@ -61,6 +63,16 @@
             hr {
                 width: 80%;
             }
+
+            .navbar .btn .fa-bars {
+                color: white;
+                font-size: 1rem;
+            }
+
+            .navbar .btn {
+                background-color: #002747 !important;
+            }
+
         </style>
 
         <title>
@@ -90,16 +102,22 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-uog">
                 <!-- todo: brand redirects to index 
                            edit svg to include School of Chemistry Database -->
-                <a class="navbar-brand" href="{% url 'cs28:index' %}">
+
+                <button class="btn">
+                    <i class="fas fa-bars p-0"></i>
+                </button>
+
+                <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
                     <img id="logo"
                         class="logo"
                         src="{% static 'icons/UoG_keyline.svg' %}"
                         alt="UoG brand logo" />
                 </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- temporarily remove until search bar is implemented -->
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
 
                 <!-- use "user.is_authenticated" to check whether user is logged in to show these navbar items -->
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
