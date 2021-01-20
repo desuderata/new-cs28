@@ -127,6 +127,18 @@
                         <a class="nav-item nav-link" href="#">Upload</a>
                     </div>
                 </div>
+                
+                <div class="navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser or user.is_staff %}
+                            <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin page</a>
+                        {% endif %}
+                        <a class="nav-item nav-link active" href="#">Hi {{ user.username }}</a>
+                        <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
+                    {% endif %}
+                </div>
             </nav>
         </header>
 
