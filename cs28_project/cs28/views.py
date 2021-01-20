@@ -7,7 +7,8 @@ author: Yee Hou, Teoh (2471020t)
         # add yr name here if you are working on this file.
 """
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import HttpResponse
 
@@ -38,3 +39,8 @@ def user_login(request):
             return redirect(reverse('cs28:login'))
     else:
         return render(request, 'login.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('cs28:index'))
