@@ -8,7 +8,7 @@
             center footer elements like in figma prototype (kinda done)
             make footer stay at the bottom
             menu button expands vertical icon sidebar
-            add serch bar to navbar
+            change searchbar focus color
 
         Author: Yee Hou, Teoh (2471020t)
         Filename: base.html
@@ -64,13 +64,17 @@
                 width: 80%;
             }
 
-            .navbar .btn .fa-bars {
-                color: white;
+            .navbar .btn{
+                color: #E1E9EF;
                 font-size: 1rem;
             }
 
             .navbar .btn {
                 background-color: #002747 !important;
+            }
+
+            .navbar input{
+                background-color:#E1E9EF;
             }
 
         </style>
@@ -102,42 +106,59 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-uog">
                 <!-- todo: brand redirects to index 
                            edit svg to include School of Chemistry Database -->
+                <div class="d-flex flex-grow-1">
+                    <button class="btn">
+                        <i class="fas fa-bars p-0"></i>
+                    </button>
 
-                <button class="btn">
-                    <i class="fas fa-bars p-0"></i>
-                </button>
+                    <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
+                        <img id="logo"
+                            class="logo"
+                            src="{% static 'icons/UoG_keyline.svg' %}"
+                            alt="UoG brand logo" />
+                    </a>
 
-                <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
-                    <img id="logo"
-                        class="logo"
-                        src="{% static 'icons/UoG_keyline.svg' %}"
-                        alt="UoG brand logo" />
-                </a>
+                    <!-- if the customer wants to use the other navbar option, its here. -->
+                    <!-- use "user.is_authenticated" to check whether user is logged in to show these navbar items -->
+                    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="{% url 'cs28:index' %}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="#">Manage</a>
+                            <a class="nav-item nav-link" href="#">Upload</a>
+                        </div>
+                    </div> -->
 
-                <!-- temporarily remove until search bar is implemented -->
-                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
-
-                <!-- use "user.is_authenticated" to check whether user is logged in to show these navbar items -->
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="{% url 'cs28:index' %}">Home <span class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link" href="#">Manage</a>
-                        <a class="nav-item nav-link" href="#">Upload</a>
-                    </div>
-                </div>
-                
-                <div class="navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                        {% if user.is_superuser or user.is_staff %}
-                            <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin page</a>
-                        {% endif %}
-                        <a class="nav-item nav-link active" href="#">Hi {{ user.username }}</a>
-                        <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
-                    {% else %}
-                        <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
+                        <form action="" class="ml-2 mr-5 my-auto form-inline d-inline w-100">
+                            <div class="input-group">
+                                <input type="search" placeholder="Search or jump to..." aria-label="Search" class="form-control">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn"><i class="mr-1 fas fa-search"></i> Search</button>
+                                </div>
+                            </div>
+                        </form>
                     {% endif %}
+                </div>
+                <div>
+                    <ul class="navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser or user.is_staff %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Hi {{ user.username }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </nav>
         </header>
