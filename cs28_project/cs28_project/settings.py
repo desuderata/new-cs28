@@ -28,7 +28,9 @@ SECRET_KEY = 'u(nf88^_55$ms2&i2jr3wvqzl53&i@jetdyeiek94)b^nb@8a+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://teamentropycs28.pythonanywhere.com/',
+                 'localhost',
+                 '127.0.0.1', ]
 
 
 # Application definition
@@ -130,6 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For pythonanywhere
+# STATIC_ROOT = '/home/teamentropycs28/cs28-main/cs28_project/assets/'
 
 MEDIA_URL = '/media/'
 
