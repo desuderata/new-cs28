@@ -53,7 +53,7 @@ def module_marks_upload(request):
     template = "module_marks_upload.html"
     
     prompt = {
-        'order': 'Order of the CSV should be coureCode, matricNo, alphanum'
+        'order': 'Order of the CSV should be courseCode, matricNo, alphanum'
     }
     
     if request.method == "GET":

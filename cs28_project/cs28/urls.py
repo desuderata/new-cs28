@@ -14,4 +14,5 @@ urlpatterns = [
     # path('cs28', include('django.contrib.auth.urls')),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
+    path('upload-module-marks/', views.module_marks_upload, name='module_marks_upload')
 ]
