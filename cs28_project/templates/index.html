@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+    Home page
+
+    Todo:
+        change picture responsiveness
+        buttons are not actually center; check what's going on
+        fix weird paddings (the 4 buttons)
+        remove the four buttons if user is not logged in
+
+    Author: Yee Hou, Teoh (2471020t)
+    Filename: index.html
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block head %}
+<style>
+    .blue-bg {
+        background-color: #003865;
+    }
+    .white {
+        color: #fefefe;
+    }
+    .div-centered {
+    text-align: left; 
+    margin: auto; 
+    width: 500px;
+    }
+    .nav-buttons {
+        height:100%;
+    }
+    .nav-buttons .fas {
+        font-size:100px;
+    }
+    .nav-buttons .btn {
+        color: #6C757D;
+    }
+
+    .welcome-text {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .nav-buttons .fas{
+            font-size:70px;
+        }
+        .nav-buttons h1{
+            font-size:20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+<!-- responsiveness abit wonky here -->
+<div class="py-5">
+    <div class="row h-100 align-items-center blue-bg">
+        <div class="welcome-text col-md-5 col-xs-12">
+            <div class="d-inline-flex white">
+                <h1>
+                    Welcome to School of Chemistry Degree calculation database!
+                </h1>
+            </div>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <img src="{% static 'pics/uni.jpg' %}"
+                    class="img-fluid"
+                    alt="Uni of Glasgow Image">
+        </div>
+    </div>
+</div>
+
+<!-- These buttons are not actually center -->
+<div class="container-fluid">    
+    <div class="row nav-buttons w-100 px-5">
+        <div class="col-md-3 col d-flex justify-content-center py-2 px-5">
+            <button class="shadow btn btn-light btn-block">
+                <h1>MANAGE</h1>
+                <br>
+
+                <i class="fas fa-cogs"></i>
+                <br>
+
+                <h5>Go to...</h5>
+            </button>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
+            <button class="shadow btn btn-light btn-block">
+                <h1>UPLOAD</h1>
+                <br>
+
+                <i class="fas fa-upload"></i>
+                <br>
+
+                <h5>Go to...</h5>
+            </button>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
+            <button class="shadow btn btn-light btn-block">
+                <h1>DEGREES</h1>
+                <br>
+
+                <i class="fas fa-graduation-cap"></i>
+                <br>
+
+                <h5>Go to...</h5>
+            </button>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
+            <button class="shadow btn btn-light btn-block">
+                <h1>STUDENTS</h1>
+                <br>
+
+                <i class="fas fa-book-reader"></i>
+                <br>
+
+                <h5>Go to...</h5>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
