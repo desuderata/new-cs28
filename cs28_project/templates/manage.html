@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+    Manage page
+
+
+
+    Author: Yee Hou, Teoh (2471020t)
+    Filename: manage.html
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+<!-- add to separete css file later -->
+<style>
+    .container-width {
+        width: 98%
+    }
+
+    .page-text {
+        padding-left: 75px;
+        padding-right: 75px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    @media (max-width: 979px) {
+        .page-text {
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+    }
+
+    .bg-white {
+        background-color: #fefefe;
+    }
+
+</style>
+{% endblock %}
+
+
+{% block title_block %}
+Manage
+{% endblock %}
+
+
+{% block body_block %}
+<div class="mt-4 pb-5 container-fluid container-width bg-white">
+    <div class="page-header row h-100 align-items-center bg-blue">
+        <div class="page-text d-inline-flex text-white">
+            <h1>Students</h1>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-auto d-flex mt-3">
+            <form class="form-inline">
+                <div class="form-row">
+                    <label class="mx-2">Year: </label>
+                    <div class="col-auto mr-2">
+                        <select class="form-control">
+                            <option selected>Year</option>
+                            <option value="1">2019-2020</option>
+                        </select>
+                    </div>
+                    <div class="col-auto mr-2">
+                        <select class="form-control">
+                            <option selected>Show All</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-auto d-flex mt-3">
+            <form class="form-inline">
+                <div class="form-row">
+                    <div class="col-auto">
+                        <button class="btn btn-secondary">Edit</button>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-secondary">Export</button>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="anonymizeCheck" value="anonymize">
+                            <label class="form-check-label" for="anonymizeCheck">Anonymize</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="mcLayoutCheck" value="mcLayout">
+                            <label class="form-check-label" for="mcLayoutCheck">MyCampus Layout</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr class="w-100">
+
+    <!-- Use Bootstrap table or better tables lib later -->
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Matric No.</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">GPA</th>
+            <th scope="col">Award</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+    </table>
+
+    <br>
+
+    <hr class="w-100">
+    <div class="row">
+        <!-- Pagination -->
+        <div class="col-auto pagination mx-4">
+            <form class="form-inline">
+                <div class="form-row">
+                    <!-- <div class="col-auto"> -->
+                    <label>Show: </label>
+                    <div class="col-auto mr-2"></div>
+                        <select class="form-control">
+                            <option value="5" selected>5</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <span class="step-links mt-1">
+
+                <!-- if foo.has_previous -->
+                    <a href="?page=1">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                    <a href="?page=#">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                <!-- endif -->
+
+                <span class="current">
+                    Page foo of bar.
+                </span>
+
+                <!-- if books.has_next -->
+                    <a href="?page=#">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                    <a href="?page=#">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                <!-- endif -->
+            </span>
+        </div>
+    </div>
+</div>
+{% endblock %}

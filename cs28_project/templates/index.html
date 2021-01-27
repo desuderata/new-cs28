@@ -22,9 +22,6 @@
 
 {% block head %}
 <style>
-    .blue-bg {
-        background-color: #003865;
-    }
     .white {
         color: #fefefe;
     }
@@ -63,7 +60,7 @@
 
 <!-- responsiveness abit wonky here -->
 <div class="py-5">
-    <div class="row h-100 align-items-center blue-bg">
+    <div class="row h-100 align-items-center bg-uog">
         <div class="welcome-text col-md-5 col-xs-12">
             <div class="d-inline-flex white">
                 <h1>
@@ -83,7 +80,7 @@
 <div class="container-fluid">    
     <div class="row nav-buttons w-100 px-5">
         <div class="col-md-3 col d-flex justify-content-center py-2 px-5">
-            <button class="shadow btn btn-light btn-block">
+            <a class="shadow btn btn-light btn-block" role="button" href="{% url 'cs28:manage' %}">
                 <h1>MANAGE</h1>
                 <br>
 
@@ -91,7 +88,7 @@
                 <br>
 
                 <h5>Go to...</h5>
-            </button>
+            </a>
         </div>
 
         <div class="col-md-3 d-flex justify-content-center py-2 px-5">
