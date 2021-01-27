@@ -40,7 +40,13 @@ def user_login(request):
     else:
         return render(request, 'login.html')
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('cs28:index'))
+
+
+@login_required
+def manage(request):
+    return render(request, 'manage.html')
