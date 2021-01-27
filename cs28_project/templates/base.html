@@ -11,6 +11,7 @@
             add serch bar to navbar
 
         Author: Yee Hou, Teoh (2471020t)
+				Kien Welch 2371692w
         Filename: base.html
     -->
     <head>
@@ -124,7 +125,7 @@
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="{% url 'cs28:index' %}">Home <span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link" href="#">Manage</a>
-                        <a class="nav-item nav-link" href="#">Upload</a>
+                        <a class="nav-item nav-link" href="{% url 'cs28:studentUpload' %}">Upload</a>
                     </div>
                 </div>
                 
@@ -164,7 +165,7 @@
                                         <a href="{% url 'cs28:index' %}">Home</a>
                                     </li>
                                     <li>
-                                        <a href="#">Manage and Upload CSV</a>
+                                        <a href="{% url 'cs28:studentUpload' %}">Manage and Upload CSV</a>
                                     </li>
                                     <li>
                                         <a href="#">Manage Users</a>

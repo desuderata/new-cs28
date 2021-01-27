@@ -5,6 +5,7 @@ todo:
 
 author: Yee Hou, Teoh (2471020t)
         # add yr name here if you are working on this file.
+        Kien Welch 2371692w
 """
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
@@ -16,6 +17,8 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'index.html')
 
+def studentUpload(request):
+    return render(request,'studentUpload.html')
 
 def user_login(request):
     if request.user.is_authenticated:
