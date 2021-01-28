@@ -4,6 +4,7 @@ todo:
 - change index to render instead of HttpResponse
 
 author: Yee Hou, Teoh (2471020t)
+        Ekaterina Terzieva(2403606t)
         # add yr name here if you are working on this file.
         Kien Welch 2371692w
 """
@@ -43,7 +44,17 @@ def user_login(request):
     else:
         return render(request, 'login.html')
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('cs28:index'))
+
+
+@login_required
+def manage(request):
+    return render(request, 'manage.html')
+
+@login_required
+def module_grades(request):
+    return render(request, 'module_grades.html')
