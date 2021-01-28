@@ -1,8 +1,9 @@
 <p align="center">
     <a href="http://teamentropycs28.pythonanywhere.com/">
         <img class="logo"
-             src="/cs28_project/static/icons/UoG_colour.svg"
-             alt="uog_logo" />
+             src="/cs28_project/static/icons/UoG_colour_edited.svg"
+             alt="uog_logo" /
+             height="64">
     </a>
 </p>
 
