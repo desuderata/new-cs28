@@ -90,15 +90,6 @@
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
         }
 
-        body {
-            padding-top: 60px;
-        }
-        @media (max-width: 979px) {
-            body {
-                padding-top: 80px;
-            }
-        }
-
         .bg-blue {
             background-color: #005398;
         }
@@ -111,6 +102,25 @@
             height: 5;
             width: 5;
             /* max-height: 60px; */
+        }
+
+        .navbar .navbar-brand {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        body {
+            /* set minimum content width when resizing */
+            /* min-width: 1000px;
+            width: auto !important;
+            width: 1000px;*/ /* for IE6 */
+            padding-top: 60px;
+        }
+
+        @media (max-width: 1000px) {
+            body {
+                padding-top: 80px;
+            }
         }
     </style>
 
@@ -146,7 +156,7 @@
                 </button>
 
                 <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
-                    <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="100" alt="UoG brand logo" />
+                    <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
                 </a>
 
                 <!-- if the customer wants to use the other navbar option, its here. -->

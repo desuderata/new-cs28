@@ -45,7 +45,23 @@
         padding-right: 150px;
     }
 
-    @media screen and (max-width: 1200px) {
+    .btn-sq {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
+    @media screen and (max-width: 1300px) {
+        .welcome-text {
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        .welcome-text h1{
+            font-size:25px;
+        }
+        .btn-sq {
+            width: 200px !important;
+            height: 200px !important;
+        }
         .nav-buttons .fas{
             font-size:70px;
         }
@@ -77,55 +93,71 @@
 </div>
 
 <!-- These buttons are not actually center -->
-<div class="container-fluid">    
-    <div class="row nav-buttons w-100 px-5">
-        <div class="col-md-3 col d-flex justify-content-center py-2 px-5">
-            <a class="shadow btn btn-light btn-block" role="button" href="{% url 'cs28:manage' %}">
-                <h1>MANAGE</h1>
-                <br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-around">
+        <div class="row nav-buttons w-100 px-5">
+            <div class="col-md-3 col-sm-6 col d-flex justify-content-center py-2">
+                <button class="shadow btn btn-light btn-block btn-sq"
+                        type ="submit"
+                        onclick="location.href = '{% url 'cs28:manage' %}';">
+                    <h1>MANAGE</h1>
+                    <br>
 
-                <i class="fas fa-cogs"></i>
-                <br>
+                    <i class="fas fa-cogs"></i>
+                    <br>
 
-                <h5>Go to...</h5>
-            </a>
-        </div>
+                    <h5>Go to...</h5>
+                </button>
+            </div>
 
-        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
-            <button class="shadow btn btn-light btn-block">
-                <h1>UPLOAD</h1>
-                <br>
+            <div class="col-md-3 col-sm-6 d-flex justify-content-center py-2">
+                <button class="shadow btn btn-light btn-block btn-sq"
+                        type ="submit"
+                        onclick="location.href = '#';">
+                    <h1>UPLOAD</h1>
+                    <br>
 
-                <i class="fas fa-upload"></i>
-                <br>
+                    <i class="fas fa-upload"></i>
+                    <br>
 
-                <h5>Go to...</h5>
-            </button>
-        </div>
+                    <h5>Go to...</h5>
+                </button>
+            </div>
 
-        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
-            <button class="shadow btn btn-light btn-block">
-                <h1>DEGREES</h1>
-                <br>
+            <div class="col-md-3 col-sm-6 d-flex justify-content-center py-2">
+                <button class="shadow btn btn-light btn-block btn-sq"
+                        type ="submit"
+                        onclick="location.href = '#';">
+                    <h1>DEGREES</h1>
+                    <br>
 
-                <i class="fas fa-graduation-cap"></i>
-                <br>
+                    <i class="fas fa-graduation-cap"></i>
+                    <br>
 
-                <h5>Go to...</h5>
-            </button>
-        </div>
+                    <h5>Go to...</h5>
+                </button>
+            </div>
 
-        <div class="col-md-3 d-flex justify-content-center py-2 px-5">
-            <a class="shadow btn btn-light btn-block" role="button" href="{% url 'cs28:module_grades' %}">
-                <h1>STUDENTS</h1>
-                <br>
+            <div class="col-md-3 col-sm-6 d-flex justify-content-center py-2">
+                <button class="shadow btn btn-light btn-block btn-sq"
+                        type ="submit"
+                        onclick="location.href = '{% url 'cs28:module_grades' %}';">
+                    <h1>STUDENTS</h1>
+                    <br>
 
-                <i class="fas fa-book-reader"></i>
-                <br>
+                    <i class="fas fa-book-reader"></i>
+                    <br>
 
-                <h5>Go to...</h5>
-            </a>
+                    <h5>Go to...</h5>
+                </button>
+            </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+</script>
 {% endblock %}
