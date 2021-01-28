@@ -1,3 +1,11 @@
+<p align="center">
+    <a href="http://teamentropycs28.pythonanywhere.com/">
+        <img class="logo"
+             src="/cs28_project/static/icons/UoG_colour.svg"
+             alt="uog_logo" />
+    </a>
+</p>
+
 # CS28 Project
 
 A bespoke and flexible database for the School of Chemistry (SoC) tailored for the calculation of Degree Classification as part of the Team Project module.
@@ -10,7 +18,7 @@ This web app is built on:
 - [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
 
-## Installation
+## Installation / Setup
 
 1. Create a virtual environment:
 
