@@ -2,6 +2,14 @@
 
 A bespoke and flexible database for the School of Chemistry (SoC) tailored for the calculation of Degree Classification as part of the Team Project module.
 
+## Prerequisites
+
+This web app is built on:
+- [Python 3.8.5](https://www.python.org/downloads/release/python-385/)
+- [Django 3.1.3](https://docs.djangoproject.com/en/3.1/releases/3.1.3/)
+- [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+
+
 ## Installation
 
 1. Create a virtual environment:
