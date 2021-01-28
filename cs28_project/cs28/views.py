@@ -4,6 +4,7 @@ todo:
 - change index to render instead of HttpResponse
 
 author: Yee Hou, Teoh (2471020t)
+        Ekaterina Terzieva(2403606t)
         # add yr name here if you are working on this file.
 """
 from django.shortcuts import redirect, render
@@ -50,3 +51,7 @@ def user_logout(request):
 @login_required
 def manage(request):
     return render(request, 'manage.html')
+
+@login_required
+def module_grades(request):
+    return render(request, 'module_grades.html')
