@@ -155,7 +155,7 @@
                     <i class="fas fa-bars p-0"></i>
                 </button>
 
-                <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
+                <a class="d-none d-sm-block navbar-brand pl-4" href="{% url 'cs28:index' %}">
                     <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
                 </a>
 
@@ -185,21 +185,40 @@
                 <ul class="navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser or user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
-                    </li>
+                        <li class="d-none d-lg-block nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
+                        </li>
                     {% endif %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Hi {{ user.username }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
-                    </li>
+                        <li class="d-none d-lg-block nav-item active">
+                            <a class="nav-link" href="#">Hi {{ user.username }}</a>
+                        </li>
+                        <li class="d-none d-lg-block nav-item">
+                            <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
+                        </li>
                     {% endif %}
+
+                    <li class="d-lg-none nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="navbarDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                        {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_superuser or user.is_staff %}
+                                <a class="dropdown-item" href="#">Admin page</a>
+                                <div class="dropdown-divider"></div>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'cs28:logout' %}">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
