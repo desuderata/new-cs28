@@ -11,6 +11,17 @@
 
 A bespoke and flexible database for the School of Chemistry (SoC) tailored for the calculation of Degree Classification as part of the Team Project module.
 
+##### Table of Contents
+
+[Prerequisites](#prerequisites)  
+[Installation / Setup](#installation-setup)  
+[Superuser Account](#superuser-account)  
+[Usage](#usage)  
+[Contributing](#contributing)  
+[Authors and Contact](#authors-and-contact)  
+[Team Coach](#team-coach)  
+[Acknowledgements](#acknowledgements)  
+
 ## Prerequisites
 
 This web app is built on:
