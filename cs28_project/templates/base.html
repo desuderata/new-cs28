@@ -8,7 +8,7 @@
             center footer elements like in figma prototype (kinda done)
             make footer stay at the bottom
             menu button expands vertical icon sidebar
-            change searchbar focus color
+            user controls dropdown expand inside navbar. (fix it)
 
         Author: Yee Hou, Teoh (2471020t)
         Filename: base.html
@@ -256,8 +256,13 @@
                                     <a href="{% url 'cs28:manage' %}">Manage and Export CSV</a>
                                 </li>
                                 <li>
-                                    <a href="#">Manage Users</a>
+                                    <a href="#">Upload</a>
                                 </li>
+                                {% if user.is_superuser or user.is_staff %}
+                                <li>
+                                    <a href="{% url 'admin:index' %}">Admin Page</a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
