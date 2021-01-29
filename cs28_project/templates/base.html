@@ -8,7 +8,7 @@
             center footer elements like in figma prototype (kinda done)
             make footer stay at the bottom
             menu button expands vertical icon sidebar
-            change searchbar focus color
+            user controls dropdown expand inside navbar. (fix it)
 
         Author: Yee Hou, Teoh (2471020t)
 				Kien Welch 2371692w
@@ -91,15 +91,6 @@
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
         }
 
-        body {
-            padding-top: 60px;
-        }
-        @media (max-width: 979px) {
-            body {
-                padding-top: 80px;
-            }
-        }
-
         .bg-blue {
             background-color: #005398;
         }
@@ -112,6 +103,25 @@
             height: 5;
             width: 5;
             /* max-height: 60px; */
+        }
+
+        .navbar .navbar-brand {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        body {
+            /* set minimum content width when resizing */
+            /* min-width: 1000px;
+            width: auto !important;
+            width: 1000px;*/ /* for IE6 */
+            padding-top: 60px;
+        }
+
+        @media (max-width: 1000px) {
+            body {
+                padding-top: 80px;
+            }
         }
     </style>
 
@@ -146,8 +156,8 @@
                     <i class="fas fa-bars p-0"></i>
                 </button>
 
-                <a class="navbar-brand pl-4" href="{% url 'cs28:index' %}">
-                    <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="100" alt="UoG brand logo" />
+                <a class="d-none d-sm-block navbar-brand pl-4" href="{% url 'cs28:index' %}">
+                    <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
                 </a>
 
                 <!-- if the customer wants to use the other navbar option, its here. -->
@@ -176,21 +186,40 @@
                 <ul class="navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser or user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
-                    </li>
+                        <li class="d-none d-lg-block nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
+                        </li>
                     {% endif %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Hi {{ user.username }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
-                    </li>
+                        <li class="d-none d-lg-block nav-item active">
+                            <a class="nav-link" href="#">Hi {{ user.username }}</a>
+                        </li>
+                        <li class="d-none d-lg-block nav-item">
+                            <a class="nav-item nav-link" href="{% url 'cs28:logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="{% url 'cs28:login' %}">Login</a>
+                        </li>
                     {% endif %}
+
+                    <li class="d-lg-none nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="navbarDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                        {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_superuser or user.is_staff %}
+                                <a class="dropdown-item" href="#">Admin page</a>
+                                <div class="dropdown-divider"></div>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'cs28:logout' %}">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -228,8 +257,13 @@
                                     <a href="{% url 'cs28:manage' %}">Manage and Export CSV</a>
                                 </li>
                                 <li>
-                                    <a href="#">Manage Users</a>
+                                    <a href="#">Upload</a>
                                 </li>
+                                {% if user.is_superuser or user.is_staff %}
+                                <li>
+                                    <a href="{% url 'admin:index' %}">Admin Page</a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
