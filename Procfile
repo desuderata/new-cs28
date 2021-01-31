@@ -1,4 +1,2 @@
-web: sh -c 'cd ./cs28_project/'
 migrate: bash python manage.py migrate
-heroku ps:scale web=1
 web: gunicorn cs28.wsgi
