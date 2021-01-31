@@ -45,7 +45,7 @@ before_script:
 
 stages:
   - Static Analysis
-  # - Test
+  - Test
 
 pylint:
   tags:
