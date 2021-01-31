@@ -71,9 +71,9 @@ pylint:
       codequality: codeclimate.json
     when: always
 
-# test:
-#   stage: Test
-#   variables:
-#     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
-#   script:
-#     - python manage.py test
+test_login:
+  stage: Test
+  variables:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  script:
+    - python manage.py test cs28.tests.test_login
