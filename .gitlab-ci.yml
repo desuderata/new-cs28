@@ -76,4 +76,5 @@ test_login:
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
+    - cd cs28_project
     - python manage.py test cs28.tests.test_login
