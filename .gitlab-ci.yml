@@ -46,6 +46,7 @@ before_script:
 stages:
   - Static Analysis
   - Test
+  - Deploy
 
 pylint:
   tags:
@@ -86,3 +87,11 @@ test_logout:
   script:
     - cd cs28_project
     - python manage.py test cs28.tests.test_logout
+
+deploy:
+  stage: Deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=cs28 --api-key=$HEROKU_API_KEY
