@@ -77,3 +77,10 @@ test_login:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
     - python manage.py test cs28.tests.test_login
+
+test_logout:
+  stage: Test
+  variables:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  script:
+    - python manage.py test cs28.tests.test_logout

@@ -1,9 +1,7 @@
-"""Test for login
+"""Test for logout
 
 Tests for the following functionalities:
-- User creation
-- User login
-- Redirect user to home after login
+
 
 author: Yee Hou, Teoh (2471020t)
 """
@@ -13,7 +11,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class LoginTest(TestCase):
+class LogoutTest(TestCase):
     def setUp(self):
         """
         Setup by creates a user
@@ -26,18 +24,23 @@ class LoginTest(TestCase):
         self.user.save()
         self.assertTrue(created, "User was not created.")
 
-    def test_login(self):
-        # log user in
-        response = self.client.post(reverse('cs28:login'),
-                                    {'username': 'testuser',
-                                     'password': 'password'})
+    def test_logout(self):
+        """
+        Tests whether a user that is logged in can log out.
+        """
+        # log user in for testing
+        self.client.login(username='testuser', password='password')
         try:
             self.assertEqual(self.user.id,
                              int(self.client.session['_auth_user_id']),
-                             "Wrong user logged in"
-                             "Perhaps a different user was logged in?")
+                             "Wrong user logged in")
         except KeyError:
             self.assertTrue(False, "Login failed.")
 
-        self.assertEqual(response.url, reverse('cs28:index'),
-                         "User was not redirected to home page after login")
+        # test logout
+        response = self.client.get(reverse('cs28:logout'))
+        self.assertEqual(response.status_code, 302,
+                         "A redirect was expected. "
+                         "User should be redirected when logging out")
+        self.assertTrue('_auth_user_id' not in self.client.session,
+                        "Logout did not log users out")
