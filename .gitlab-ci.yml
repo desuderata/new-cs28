@@ -11,7 +11,7 @@ services:
   - postgres:latest
 
 variables:
-  POSTGRES_DB: cs28_project
+  POSTGRES_DB: ci
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
