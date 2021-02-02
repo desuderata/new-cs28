@@ -73,6 +73,8 @@ pylint:
     when: always
 
 test_login:
+  services:
+  - postgres:latest
   stage: Test
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
@@ -81,6 +83,8 @@ test_login:
     - python manage.py test cs28.tests.test_login
 
 test_logout:
+  services:
+  - postgres:latest
   stage: Test
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
