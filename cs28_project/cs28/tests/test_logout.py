@@ -1,7 +1,8 @@
 """Test for logout
 
 Tests for the following functionalities:
-
+- User creation
+- User logout
 
 author: Yee Hou, Teoh (2471020t)
 """
