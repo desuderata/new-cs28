@@ -12,8 +12,6 @@ services:
 
 variables:
   POSTGRES_DB: ci
-
-environment:
   POSTGRES_HOST_AUTH_METHOD: trust
 
 # This folder is cached between builds
