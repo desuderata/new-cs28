@@ -8,12 +8,16 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
+Note:
+removed django_heroku as it is messing up with postgres on 
+gitlab ci
 """
 
 import sys
 import os
 import dj_database_url
-import django_heroku
+# import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -167,7 +171,7 @@ PASSWORD_HASHERS = (
 LOGIN_REDIRECT_URL = '/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
