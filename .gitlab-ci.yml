@@ -8,10 +8,10 @@ image: python:latest
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
 services:
   - mysql:latest
-  - postgres
+  - postgres:latest
 
 variables:
-  POSTGRES_DB: database_name
+  POSTGRES_DB: cs28_project
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -74,16 +74,16 @@ pylint:
 
 test_login:
   stage: Test
-  # variables:
-  #   DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  variables:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
     - cd cs28_project
     - python manage.py test cs28.tests.test_login
 
 test_logout:
   stage: Test
-  # variables:
-  #   DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  variables:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
     - cd cs28_project
     - python manage.py test cs28.tests.test_logout
