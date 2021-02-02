@@ -8,6 +8,10 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
+Note:
+removed django_heroku as it is messing up with postgres on
+gitlab ci
 """
 
 import os
