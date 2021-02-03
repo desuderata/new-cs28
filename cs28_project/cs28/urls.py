@@ -5,8 +5,7 @@ author: Yee Hou, Teoh (2471020t)
         # add yr name here if you are working on this file.
         Kien Welch 2371692w
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from cs28 import views
 
 app_name = 'cs28'

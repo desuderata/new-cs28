@@ -18,8 +18,10 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'index.html')
 
+
 def studentUpload(request):
-    return render(request,'studentUpload.html')
+    return render(request, 'studentUpload.html')
+
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -54,6 +56,7 @@ def user_logout(request):
 @login_required
 def manage(request):
     return render(request, 'manage.html')
+
 
 @login_required
 def module_grades(request):
