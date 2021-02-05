@@ -41,6 +41,7 @@ class StudentAdmin(ModelAdmin):
     exclude = ("gradeDataUpdated",
                "finalAward1",
                "finalAward2",
+               "finalAward3",
                "updatedAward")
 
     list_display = ("matricNo",
@@ -50,6 +51,7 @@ class StudentAdmin(ModelAdmin):
                     "finalAward1",
                     "finalAward2",
                     "finalAward3",
+                    "finalAward4",
                     "updatedAward")
 
 
