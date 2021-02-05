@@ -12,7 +12,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cs28_project.settings')
 django.setup()
 
 from django.contrib.auth.models import User
-from cs28.models import GraduationYear, AcademicPlan
+from cs28.models import GraduationYear, AcademicPlan, Student
 
 
 def populate_users():
@@ -92,10 +92,32 @@ def populate_academic_plan():
     print("Populate Academic plans...")
 
 
+def populate_students():
+    with open("population_csv/student.csv") as f:
+        reader = csv.reader(f)
+        next(reader)  # skip header
+
+        for row in reader:
+            rand_award = round(random.uniform(0, 22), 4)
+            first, last = row[1].split(",")
+            plan = AcademicPlan.objects.get(planCode=row[2])
+            year = GraduationYear.objects.get(gradYear=row[3])
+
+            Student.objects.get_or_create(matricNo=row[0],
+                                          givenNames=last,
+                                          surname=first,
+                                          academicPlan=plan,
+                                          gradYear=year,
+                                          finalAward4=rand_award)
+    print("Populated students...")
+
+
 def populate():
     populate_users()
     populate_graduation_year()
     populate_academic_plan()
+    populate_students()
+
 
 if __name__ == '__main__':
     print("Populating cs28 database")
