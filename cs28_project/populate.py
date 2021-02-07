@@ -12,7 +12,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cs28_project.settings')
 django.setup()
 
 from django.contrib.auth.models import User
-from cs28.models import GraduationYear, AcademicPlan, Student
+from cs28.models import GraduationYear, AcademicPlan, Student, Grade
 
 
 def populate_users():
@@ -112,11 +112,40 @@ def populate_students():
     print("Populated students...")
 
 
+def populate_grades():
+    with open("population_csv/student.csv") as f:
+        reader = csv.reader(f)
+        next(reader)  # skip header
+
+        grades = ["A1", "A2", "A3", "A4", "A5",
+                  "B1", "B2", "B3", "C1", "C2",
+                  "C3", "D1", "D2", "D3", "E1",
+                  "E2", "E3", "F1", "F2", "F3",
+                  "G1", "G2", "H", "CW", "CR", "MV"]
+        courses = {"F100-2208": ["CHEM_3012", "CHEM_3009", "CHEM_3014",
+                                 "CHEM_4003P", "CHEM_4014", "CHEM_4012",
+                                 "CHEM_4009", "CHEM_4001"],
+                   "F101-2207": ["CHEM_4012", "CHEM_4009", "CHEM_4014",
+                                 "CHEM_5016", "CHEM_4025", "CHEM_5009P",
+                                 "CHEM_5022", "CHEM_5021", "CHEM_5017",
+                                 "CHEM_5003", "CHEM_5005"]}
+
+        for row in reader:
+            matric_no = Student.objects.get(matricNo=row[0])
+
+            for i in range(len(courses[row[2]])):
+                Grade.objects.get_or_create(courseCode=courses[row[2]][i],
+                                             matricNo=matric_no,
+                                             alphanum=random.choice(grades))
+    print("Populated Grades...")
+
+
 def populate():
     populate_users()
     populate_graduation_year()
     populate_academic_plan()
     populate_students()
+    populate_grades()
 
 
 if __name__ == '__main__':
