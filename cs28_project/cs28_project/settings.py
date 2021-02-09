@@ -152,6 +152,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# For pythonanywhere
+# STATIC_ROOT = '/home/teamentropycs28/cs28-main/cs28_project/assets/'
+
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
