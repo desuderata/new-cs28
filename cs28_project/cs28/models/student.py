@@ -75,14 +75,14 @@ class Student(models.Model):
     finalAward3 = models.DecimalField(max_digits=5,
                                       decimal_places=3,
                                       null=True,
-                                      default=0.000,
+                                      blank=True,
                                       verbose_name="Final award (3dp)"
                                       )
 
     finalAward4 = models.DecimalField(max_digits=6,
                                       decimal_places=4,
                                       null=True,
-                                      blank=True,
+                                      default=0.0000,
                                       verbose_name="Final award (4dp)",
                                       help_text=final_award_help)
 
