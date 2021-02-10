@@ -4,4 +4,4 @@ __pycache__/
 db.sqlite3
 *.key
 thumbs.db
-**/migrations/*
+cs28_project/cs28/migrations/*
