@@ -152,22 +152,31 @@ Manage
 {% endblock %}
 
 
-<!-- working progress, ignore for now
-<script id="table" type="application/json"> </script>
+<!-- working progress, ignore errors for now -->
+{% block scripts %}
 
-var objects = [];
-{% for model in models %}
-    objects[] = {
-        name: {{ model.name }},
-        date: {{ model.date }},
-        // etc.
-    };
+<script
 
-var $table = $('#table');
-    
-    $(function () {
-        $('#table').bootstrapTable({
-            data: objects
+    var objects = [];
+    {% for model in student %}
+        objects[] = {
+            Course Code: {{model.courseCode}}
+            Matric No: {{ model.matricNo }},
+            First Name: {{ model.givenNames }},
+            Last Name: {{model.surname}},
+            Alphanumeric Grade: {{model.alphanum}},
+            22pt Grade: {{model.}}
+
+        };
+
+    var $table = $('#table');
+        
+        $(function () {
+            $('#table').bootstrapTable({
+                data: objects
+            });
         });
-    });
--->
+
+</script>
+
+{% endblock %}
