@@ -150,3 +150,27 @@ Manage
     </div>
 </div>
 {% endblock %}
+
+
+<!-- working progress, ignore for now
+{% block scripts %}
+<script id="table" type="application/json"> </script>
+
+var objects = [];
+{% for model in models %}
+    objects[] = {
+        name: {{ model.name }},
+        date: {{ model.date }},
+        // etc.
+    };
+
+var $table = $('#table');
+    
+    $(function () {
+        $('#table').bootstrapTable({
+            data: objects
+        });
+    });
+
+{% endfor %}
+-->
