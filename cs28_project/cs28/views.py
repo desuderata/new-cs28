@@ -5,6 +5,7 @@ todo:
 
 author: Yee Hou, Teoh (2471020t)
         Ekaterina Terzieva(2403606t)
+        Nguyen Thanh Hieu (2401707n)
         # add yr name here if you are working on this file.
         Kien Welch 2371692w
 """
@@ -61,3 +62,7 @@ def manage(request):
 @login_required
 def module_grades(request):
     return render(request, 'module_grades.html')
+
+@login_required
+def module_grades_upload(request):
+    return render(request, 'module_grades_upload.html')
