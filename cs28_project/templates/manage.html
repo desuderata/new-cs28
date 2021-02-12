@@ -2,8 +2,6 @@
 <!--
     Manage page
 
-
-
     Author: Yee Hou, Teoh (2471020t)
     Filename: manage.html
 -->
@@ -13,7 +11,7 @@
 
 
 {% block head %}
-<!-- add to separete css file later -->
+<!-- add to separate css file later -->
 <style>
     .container-width {
         width: 98%
@@ -40,6 +38,15 @@
     }
 
 </style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/editable/bootstrap-table-editable.min.js"></script>
+
+<!-- bootstrap table export -->
+<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
 {% endblock %}
 
 
@@ -101,22 +108,23 @@ Manage
     </div>
     <hr class="w-100">
 
-    <!-- Use Bootstrap table or better tables lib later -->
-    <table class="table">
+
+    <table id="table"
+           data-height="460"
+           data-pagination="true"
+           data-side-pagination="server"
+           data-server-sort="false">
         <thead>
-          <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Matric No.</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">GPA</th>
-            <th scope="col">Award</th>
-            <th scope="col">Notes</th>
-          </tr>
+            <tr>
+                <th data-field="id" data-sortable="true">Matric No.</th>
+                <th data-field="first" data-sortable="true">First Name</th>
+                <th data-field="last" data-sortable="true">Last Name</th>
+                <th data-field="gpa" data-sortable="true">GPA</th>
+                <th data-field="award" data-sortable="true">Award</th>
+                <th data-field="notes" data-sortable="true">Notes</th>
+            </tr>
         </thead>
     </table>
-
-    <br>
 
     <hr class="w-100">
     <div class="row">
@@ -161,4 +169,31 @@ Manage
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var $table = $('#table');
+
+    // populate an array with json for each student
+    var mydata = [
+        {% for model in student %}
+            {
+                "id": "{{ model.matricNo }}",
+                "first": "{{ model.givenNames }}",
+                "last": "{{ model.surname}}",
+                "gpa": "{{ model.finalAward4 }}",
+                "award": "{{ model.foobar }}",
+                "notes": "{{ model.foo }}"
+            }
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    ];
+
+    $(function () {
+        $('#table').bootstrapTable({
+            data: mydata
+        });
+    });
+</script>
 {% endblock %}
