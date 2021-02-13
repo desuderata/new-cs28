@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import HttpResponse
 
+from cs28.models import Student
+
 
 def index(request):
     return render(request, 'index.html')
@@ -55,7 +57,8 @@ def user_logout(request):
 
 @login_required
 def manage(request):
-    return render(request, 'manage.html')
+    ctx = {"student": Student.objects.all()}
+    return render(request, 'manage.html', context=ctx)
 
 
 @login_required
