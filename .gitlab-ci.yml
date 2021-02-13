@@ -54,6 +54,7 @@ stages:
 pylint:
   tags:
     - runner
+    - docker
   stage: Static Analysis
   before_script:
     - mkdir -p public/badges public/lint
@@ -76,8 +77,10 @@ pylint:
     when: always
 
 test_login:
+  tags:
+    - docker
   services:
-  - postgres:latest
+    - postgres:latest
   stage: Test
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
@@ -86,8 +89,10 @@ test_login:
     - python manage.py test cs28.tests.test_login
 
 test_logout:
+  tags:
+    - docker
   services:
-  - postgres:latest
+    - postgres:latest
   stage: Test
   variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
@@ -96,6 +101,8 @@ test_logout:
     - python manage.py test cs28.tests.test_logout
 
 deploy:
+  tags:
+    - docker
   stage: Deploy
   script:
     - apt-get update -qy
