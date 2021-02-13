@@ -152,8 +152,10 @@ Module grades
 {% endblock %}
 
 
-<!-- working progress, ignore errors for now 
+<!-- working progress,-->
+{% block scripts %}
 <script>
+    var $table = $('#table');
 
     var objects = [
         {% for model in student %}
@@ -170,5 +172,11 @@ Module grades
         {% endfor %}
 
     ];
+
+    $(function () {
+        $('#table').bootstrapTable({
+            data: objects
+        });
+
 </script>
--->
+{% endblock %}
