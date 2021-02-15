@@ -164,8 +164,7 @@ Module grades
                 "id": "{{ model.matricNo.matricNo }}",
                 "first": "{{ model.matricNo.givenNames }}",
                 "last": "{{model.matricNo.surname}}",
-                "an_grade": "{{model.matricNo.alphanum}}",
-                "ttpt_grade": "{{model.matricNo.foobar}}"
+                "an_grade": "{{model.alphanum}}"
         }
 
         {% if not forloop.last %},{% endif %}
