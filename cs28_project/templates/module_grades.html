@@ -92,6 +92,11 @@ Module grades
     <!-- Use Bootstrap table or better tables lib later -->
     <table class="table"
         id = "table">
+        data-height= "700"
+
+
+
+
         <thead >
           <tr>
             <th data-field = "code" data-sortable="true">Course Code</th>
@@ -159,7 +164,7 @@ Module grades
     var $table = $('#table');
 
     var objects = [
-        {% for model in student %}
+        {% for model in grade %}
         {
                 "code": "{{model.courseCode}}",
                 "id": "{{ model.matricNo.matricNo }}",
