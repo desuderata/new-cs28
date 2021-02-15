@@ -161,11 +161,11 @@ Module grades
         {% for model in student %}
         {
                 "code": "{{model.courseCode}}",
-                "id": "{{ model.matricNo }}",
-                "first": "{{ model.givenNames }}",
-                "last": "{{model.surname}}",
-                "an_grade": "{{model.alphanum}}",
-                "ttpt_grade": "{{model.foobar}}"
+                "id": "{{ model.matricNo.matricNo }}",
+                "first": "{{ model.matricNo.givenNames }}",
+                "last": "{{model.matricNo.surname}}",
+                "an_grade": "{{model.matricNo.alphanum}}",
+                "ttpt_grade": "{{model.matricNo.foobar}}"
         }
 
         {% if not forloop.last %},{% endif %}
