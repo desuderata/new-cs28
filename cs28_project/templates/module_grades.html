@@ -91,12 +91,14 @@ Module grades
 
     <!-- Use Bootstrap table or better tables lib later -->
     <table class="table"
-        id = "table">
+        id = "table"
         data-height= "700"
+        data-pagination="true"
+        data-side-pagination="client"
+        data-server-sort="false"
 
 
-
-
+        >
         <thead >
           <tr>
             <th data-field = "code" data-sortable="true">Course Code</th>
