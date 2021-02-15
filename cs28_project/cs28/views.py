@@ -7,6 +7,7 @@ author: Yee Hou, Teoh (2471020t)
         Ekaterina Terzieva(2403606t)
         # add yr name here if you are working on this file.
         Kien Welch 2371692w
+        Alana Grant 239048G
 """
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
@@ -15,6 +16,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 
 from cs28.models import Student
+from cs28.models import Grade
 
 
 def index(request):
@@ -63,4 +65,5 @@ def manage(request):
 
 @login_required
 def module_grades(request):
-    return render(request, 'module_grades.html')
+    ctx = {"student": Student.objects.all(), "student": Grade.objects.all()}
+    return render(request, 'module_grades.html', context =ctx)
