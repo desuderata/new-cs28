@@ -130,7 +130,7 @@ Manage
                 <th data-field="id" data-sortable="true">Matric No.</th>
                 <th data-field="first" data-sortable="true">First Name</th>
                 <th data-field="last" data-sortable="true">Last Name</th>
-                <th data-field="gpa" data-sortable="true">GPA</th>
+                <th data-field="gpa" data-sortable="true" data-editable="true">GPA</th>
                 <th data-field="award" data-sortable="true">Award</th>
                 <th data-field="notes" data-sortable="true">Notes</th>
             </tr>
@@ -164,8 +164,9 @@ Manage
         });
     });
 
-    $(document).ready(function() {
-        $.fn.editable.defaults.mode = 'inline';
+    $('#table').on('editable-save.bs.table', function(e, field, row, oldValue, $el){
+        console.log(row);
+        // ajax post call to update db
     });
 
 </script>
