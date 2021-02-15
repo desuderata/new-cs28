@@ -32,8 +32,6 @@ before_script:
   - cd cs28_project
   - python manage.py makemigrations
   - python manage.py migrate
-  - python manage.py flush
-  - python populate.py
 
 # To get Django tests to work you may need to create a settings file using
 # the following DATABASES:
