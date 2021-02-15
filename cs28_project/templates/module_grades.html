@@ -120,49 +120,6 @@ Module grades
     </table>
 
     <br>
-
-    <hr class="w-100">
-    <div class="row">
-        <!-- Pagination -->
-        <div class="col-auto pagination mx-4">
-            <form class="form-inline">
-                <div class="form-row">
-                    <!-- <div class="col-auto"> -->
-                    <label>Show: </label>
-                    <div class="col-auto mr-2"></div>
-                        <select class="form-control">
-                            <option value="5" selected>5</option>
-                            <option value="10">10</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
-            <span class="step-links mt-1">
-
-                <!-- if foo.has_previous -->
-                    <a href="?page=1">
-                        <i class="fas fa-angle-double-left"></i>
-                    </a>
-                    <a href="?page=#">
-                        <i class="fas fa-angle-left"></i>
-                    </a>
-                <!-- endif -->
-
-                <span class="current">
-                    Page foo of bar.
-                </span>
-
-                <!-- if books.has_next -->
-                    <a href="?page=#">
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                    <a href="?page=#">
-                        <i class="fas fa-angle-double-right"></i>
-                    </a>
-                <!-- endif -->
-            </span>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
@@ -175,11 +132,11 @@ Module grades
     var objects = [
         {% for model in grade %}
         {
-                "code": "{{model.courseCode}}",
+                "code": "{{ model.courseCode }}",
                 "id": "{{ model.matricNo.matricNo }}",
                 "first": "{{ model.matricNo.givenNames }}",
-                "last": "{{model.matricNo.surname}}",
-                "an_grade": "{{model.alphanum}}"
+                "last": "{{ model.matricNo.surname }}",
+                "an_grade": "{{ model.alphanum }}"
         }
 
         {% if not forloop.last %},{% endif %}
