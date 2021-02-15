@@ -192,8 +192,58 @@ Manage
 
     $(function () {
         $('#table').bootstrapTable({
-            data: mydata
+            data: mydata,
+            // subtable
+            onExpandRow: function (index, row, $detail) {
+                var $el = $detail.html('<table></table>').find('table')
+                var columns = [
+                    {
+                        field: "code",
+                        title: "Course Code",
+                        sortable: true
+                    },
+                    {
+                        field: "alpha",
+                        title: "Alphanumeric Grade",
+                        sortable: true,
+                        editable: true
+                    },
+                    {
+                        field: "ttpt",
+                        title: "22pt. (4 d.p.)",
+                        sortable: true,
+                        editable: true
+                    },
+                ]
+                var sub_data = [
+                    // placeholder
+                    {
+                        "code": "FooBar",
+                        "alpha": "BarFoo",
+                        "ttpt": "SpamEggs"
+                    },
+                    {
+                        "code": "FooBar",
+                        "alpha": "BarFoo",
+                        "ttpt": "SpamEggs"
+                    },
+                    {
+                        "code": "FooBar",
+                        "alpha": "BarFoo",
+                        "ttpt": "SpamEggs"
+                    }
+                ]
+                $el.bootstrapTable({
+                    columns: columns,
+                    data: sub_data,
+                })
+            }
         });
+    });
+
+    $('#table').on('editable-save.bs.table', function(e, field, row, oldValue, $el){
+        console.log(row);
+        // ajax post call to update db
     });
 </script>
 {% endblock %}
