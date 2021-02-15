@@ -65,5 +65,5 @@ def manage(request):
 
 @login_required
 def module_grades(request):
-    ctx = {"student": Student.objects.all(), "student": Grade.objects.all()}
+    ctx = {"grade": Grade.objects.all()}
     return render(request, 'module_grades.html', context =ctx)
