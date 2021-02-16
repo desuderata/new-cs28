@@ -21,201 +21,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- move to separate css files later on -->
-    <style>
-        .w-c {
-            width: 98%
-        }
-        /* UOG colorway */
-        .bg-uog {
-            background-color: #003865;
-        }
-
-        .bg-uog-light {
-            background-color: #013e70;
-        }
-
-        .bg-blue {
-            background-color: #005398;
-        }
-
-        .text-white {
-            color: #E1E9EF; /* Bluish white. Use for text */
-        }
-
-        /* body { */
-            /* set minimum content width when resizing */
-            /* min-width: 1000px;
-            width: auto !important;
-            width: 1000px; for IE6 */
-        /* } */
-
-        body {
-            /* Temporary font... MyGlasgow uses nimbus sans and recommenced font
-                * by UOG is Swiss 721 BT
-                */
-            font-family: Arial, Helvetica, sans-serif;
-            color: #212529;
-            background-color: #EBF1F5 !important;
-
-            padding-top: 40px;
-            padding-bottom: 100px;
-        }
-
-        @media (max-width: 1000px) {
-            body {
-                padding-top: 80px;
-            }
-        }
-
-        /* navbar */
-
-        .navbar .btn {
-            color: #E1E9EF;
-            font-size: 1rem;
-        }
-
-        .navbar .btn {
-            background-color: #002747 !important;
-        }
-
-        .navbar input {
-            background-color: #E1E9EF;
-        }
-
-        /* .navbar-nav > li > a{ padding: 0px 15px !important;} */
-
-        .navbar .navbar-brand {
-            padding-top: 0px !important;
-            padding-bottom: 0px !important;
-        }
-
-        .navbar .form-inline .btn {
-            padding-top: 0px !important;
-        }
-
-        .navbar .form-control {
-            padding: 1rem 1rem;
-            border-width: 0;
-        }
-
-        .logo {
-            max-height: 32px;
-            height: 5;
-            width: 5;
-        }
-
-        /* footer */
-        .footerNav {
-            color: #577492;
-        }
-
-        .footerNav ul {
-            line-height: 2em;
-            list-style-type: none;
-        }
-
-        .footerNav a:link,
-        .footerNav a:visited {
-            text-decoration: none;
-            color: rgb(0, 60, 100);
-        }
-
-        .footerNav a:hover,
-        .footerNav a:active {
-            text-decoration: underline;
-        }
-
-        .footerNav h5 {
-            line-height: 2em;
-        }
-
-        /* sidebar */
-        .wrapper {
-            display: flex;
-            width: 100%;
-        }
-
-        #sidebar {
-            width: 250px;
-
-            height: 100vh;
-
-            position: fixed;
-            top: 20;
-            left: 0;
-            z-index: 999;
-
-            background:#003865;
-            color: #fefefe;
-
-            /* transition: all 0.2s; */
-        }
-
-        #sidebar.active {
-            width: 70px;
-            height: 100vh;
-            text-align:center;
-        }
-
-        #sidebar ul {
-            padding: 20px 0;
-        }
-
-        #sidebar ul li a {
-            text-align: left;
-            font-size: 0.85em;
-        }
-
-        #sidebar ul li a i {
-            vertical-align: middle;
-            margin-right: 0;
-            font-size: 1.8em;
-            margin-bottom:5px;
-        }
-
-        #sidebar.active ul li a {
-            font-size: 0.85em;
-        }
-
-        #sidebar.active ul li a i {
-            margin-right: 0;
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        #sidebar p {
-            display: inline;
-        }
-
-        #sidebar.active p {
-            display: none;
-        }
-
-        #sidebar .nav-link {
-            color: #E1E9EF;
-        }
-
-        /* body block */
-        #bodyBlock {
-            width: calc(100% - 250px);
-            position: absolute;
-            min-height: 100vh;
-            transition: all 0.2s;
-            top: 60;
-            right: 0;
-        }
-
-        #bodyBlock.active {
-            width: calc(100% - 70px);
-            position: absolute;
-            min-height: 100vh;
-            transition: all 0.2s;
-            top: 60;
-            right: 0;
-        }
-    </style>
-
     <title>
         Chem db -
         {% block title_block %}
@@ -223,11 +28,10 @@
     </title>
 
     <!-- tab icon -->
-    <!-- <link rel="icon" href="{% static 'icons/UoG_logo.svg' %}"> -->
+    <link rel="icon" href="{% static 'icons/favicon.ico' %}">
 
-    <!-- icon from MyCampus -->
-    <link rel="icon" href="https://sharepoint.gla.ac.uk/Style%20Library/Content/images/icons/favicon.ico">
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
     <!-- for bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -251,11 +55,18 @@
             <!-- todo: brand redirects to index 
                            edit svg to include School of Chemistry Database -->
             <div class="d-flex flex-grow-1">
-                <button class="btn"
+                <button class="btn btn-sm"
                         type="button"
                         id="collapseSidebar">
-                    <i class="fas fa-bars p-0"></i>
+                    <!-- <i class="fas fa-bars p-0"></i> -->
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </button>
+
 
                 <a class="d-none d-sm-block navbar-brand pl-4" href="{% url 'cs28:index' %}">
                     <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
@@ -324,106 +135,103 @@
             </div>
         </nav>
     </header>
-        <div class="wrapper">
-            <!-- sidebar -->
-            <nav id="sidebar" class="active">
-                <ul class="nav components flex-column">
-                    <!-- home -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-home"></i>
-                            <p class="pl-2">Home</p>
-                        </a>
-                    </li>
-                    <!-- degree -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-graduation-cap"></i>
-                            <p class="pl-2">Degree</p>
-                        </a>
-                    </li>
-                    <!-- students -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-book-reader"></i>
-                            <p class="pl-2">Students</p>
-                        </a>
-                    </li>
-                    <!-- manage -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-cogs"></i>
-                            <p class="pl-2">Manage</p>
-                        </a>
-                    </li>
-                    <!-- upload -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-upload"></i>
-                            <p class="pl-2">Upload</p>
-                        </a>
-                    </li>
-                    <!-- sign out -->
-                    <li class="px-1 py-2 nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-fw fas fa-sign-out-alt"></i>
-                            <p class="pl-2">Sign out</p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+    <div class="wrapper">
+        <!-- sidebar -->
+        <nav id="sidebar" class="active">
+            <ul class="nav components flex-column">
+                <!-- home -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="{% url 'cs28:index' %}">
+                        <i class="fa-fw fas fa-home"></i>
+                        <p class="pl-2">Home</p>
+                    </a>
+                </li>
+                <!-- degree -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-fw fas fa-graduation-cap"></i>
+                        <p class="pl-2">Degree</p>
+                    </a>
+                </li>
+                <!-- students -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="{% url 'cs28:module_grades' %}">
+                        <i class="fa-fw fas fa-book-reader"></i>
+                        <p class="pl-2">Students</p>
+                    </a>
+                </li>
+                <!-- manage -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="{% url 'cs28:manage' %}">
+                        <i class="fa-fw fas fa-cogs"></i>
+                        <p class="pl-2">Manage</p>
+                    </a>
+                </li>
+                <!-- upload -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-fw fas fa-upload"></i>
+                        <p class="pl-2">Upload</p>
+                    </a>
+                </li>
+                <!-- sign out -->
+                <li class="px-1 py-2 nav-item">
+                    <a class="nav-link" href="{% url 'cs28:logout' %}">
+                        <i class="fa-fw fas fa-sign-out-alt"></i>
+                        <p class="pl-2">Sign out</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-            <!-- body block -->
-            <div id="bodyBlock" class="active">
-                {% block body_block %}
+        <!-- body block -->
+        <div id="bodyBlock" class="active">
+            {% block body_block %}
 
-                {% endblock %}
-                <footer class="page-footer font-small pt-4 footerNav">
-                    <hr class="w-c">
-                    <div class="container">
-                        <div class="container-fluid justify-content-center text-center text-md-left">
-                            <div class="row">
-                                <div class="col-md-6 mt-md-0 mb-3">
-                                    <!-- kinda hoping this would center it abit... still wonky -->
-                                    <div class="ml-5">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="{% url 'cs28:index' %}">Home</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'cs28:manage' %}">Manage and Export CSV</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Upload</a>
-                                            </li>
-                                            {% if user.is_superuser or user.is_staff %}
-                                            <li>
-                                                <a href="{% url 'admin:index' %}">Admin Page</a>
-                                            </li>
-                                            {% endif %}
-                                        </ul>
-                                    </div>
+            {% endblock %}
+            <footer class="page-footer font-small pt-4 footerNav">
+                <hr class="w-c">
+                <div class="container">
+                    <div class="container-fluid justify-content-center text-center text-md-left">
+                        <div class="row">
+                            <div class="col-md-6 mt-md-0 mb-3">
+                                <!-- kinda hoping this would center it abit... still wonky -->
+                                <div class="ml-5">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{% url 'cs28:index' %}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'cs28:manage' %}">Manage and Export CSV</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Upload</a>
+                                        </li>
+                                        {% if user.is_superuser or user.is_staff %}
+                                        <li>
+                                            <a href="{% url 'admin:index' %}">Admin Page</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
                                 </div>
-            
-                                <div class="col-md-6 mb-md-0 mb-3">
-                                    <div class="ml-5">
-                                        <h5 class="text-uppercase font-weight-bold">The School of Chemistry</h5>
-                                        <p>
-                                            Joseph Black Building<br />
-                                            University Avenue<br />
-                                            Glasgow G12 8QQ
-                                        </p>
-                                    </div>
+                            </div>
+        
+                            <div class="col-md-6 mb-md-0 mb-3">
+                                <div class="ml-5">
+                                    <h5 class="text-uppercase font-weight-bold">The School of Chemistry</h5>
+                                    <p>
+                                        Joseph Black Building<br />
+                                        University Avenue<br />
+                                        Glasgow G12 8QQ
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         </div>
-                <!-- todo: center elements like in figma prototype -->
-        <!-- </main>
-    </div> -->
+    </div>
 
 
     <!-- scripts -->
@@ -448,7 +256,9 @@
             $('#collapseSidebar').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $('#bodyBlock').toggleClass('active');
+                $('.bars').toggleClass('active');
             });
+
         });
     </script>
 
