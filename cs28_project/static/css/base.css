@@ -48,7 +48,9 @@ body {
 }
 
 /* navbar */
-
+.navbar {
+    z-index: 1000 !important;
+}
 .navbar .btn {
     color: #E1E9EF;
     font-size: 1rem;
@@ -111,8 +113,27 @@ body {
 
 /* sidebar */
 .wrapper {
-    display: flex;
-    width: 100%;
+    /* pushes content aside */
+    /* display: flex;
+    width: 100%; */
+    /* for overlay version */
+    display: block;
+}
+
+.overlay {
+    visibility: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 998;
+    opacity: 0;
+    /* transition: all 0.5s ease-in-out; */
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 #sidebar {
@@ -255,7 +276,7 @@ body {
     width: calc(100% - 250px);
     position: absolute;
     min-height: 100vh;
-    transition: all 0.2s;
+    /* transition: all 0.2s; */
     top: 60;
     right: 0;
 }
@@ -264,7 +285,7 @@ body {
     width: calc(100% - 70px);
     position: absolute;
     min-height: 100vh;
-    transition: all 0.2s;
+    /* transition: all 0.2s; */
     top: 60;
     right: 0;
 }
