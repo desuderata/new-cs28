@@ -68,8 +68,8 @@
                 </button>
 
 
-                <a class="d-none d-sm-block navbar-brand pl-4" href="{% url 'cs28:index' %}">
-                    <img id="logo" class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
+                <a id="logo" class="d-none d-sm-block navbar-brand pl-4" href="{% url 'cs28:index' %}">
+                    <img class="logo" src="{% static 'icons/UoG_keyline_edited.svg' %}" height="150" alt="UoG brand logo" />
                 </a>
 
                 <!-- if the customer wants to use the other navbar option, its here. -->
@@ -92,6 +92,7 @@
                         </div>
                     </div>
                 </form>
+
                 {% endif %}
             </div>
             <div>
@@ -140,46 +141,58 @@
         <nav id="sidebar" class="active">
             <ul class="nav components flex-column">
                 <!-- home -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="{% url 'cs28:index' %}">
-                        <i class="fa-fw fas fa-home"></i>
-                        <p class="pl-2">Home</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2 outer">
+                        <a class="nav-link" href="{% url 'cs28:index' %}">
+                            <i class="fa-fw fas fa-home"></i>
+                            <p class="pl-2">Home</p>
+                        </a>
+                    </div>
                 </li>
                 <!-- degree -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-fw fas fa-graduation-cap"></i>
-                        <p class="pl-2">Degree</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2">
+                        <a class="nav-link" href="#">
+                            <i class="fa-fw fas fa-graduation-cap"></i>
+                            <p class="pl-2">Degree</p>
+                        </a>
+                    </div>
                 </li>
                 <!-- students -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="{% url 'cs28:module_grades' %}">
-                        <i class="fa-fw fas fa-book-reader"></i>
-                        <p class="pl-2">Students</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2">
+                        <a class="nav-link" href="{% url 'cs28:module_grades' %}">
+                            <i class="fa-fw fas fa-book-reader"></i>
+                            <p class="pl-2">Students</p>
+                        </a>
+                    </div>
                 </li>
                 <!-- manage -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="{% url 'cs28:manage' %}">
-                        <i class="fa-fw fas fa-cogs"></i>
-                        <p class="pl-2">Manage</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2">
+                        <a class="nav-link" href="{% url 'cs28:manage' %}">
+                            <i class="fa-fw fas fa-cogs"></i>
+                            <p class="pl-2">Manage</p>
+                        </a>
+                    </div>
                 </li>
                 <!-- upload -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-fw fas fa-upload"></i>
-                        <p class="pl-2">Upload</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2">
+                        <a class="nav-link" href="#">
+                            <i class="fa-fw fas fa-upload"></i>
+                            <p class="pl-2">Upload</p>
+                        </a>
+                    </div>
                 </li>
                 <!-- sign out -->
-                <li class="px-1 py-2 nav-item">
-                    <a class="nav-link" href="{% url 'cs28:logout' %}">
-                        <i class="fa-fw fas fa-sign-out-alt"></i>
-                        <p class="pl-2">Sign out</p>
-                    </a>
+                <li class="nav-item">
+                    <div class="px-1 py-2">
+                        <a class="nav-link" href="{% url 'cs28:logout' %}">
+                            <i class="fa-fw fas fa-sign-out-alt"></i>
+                            <p class="pl-2">Sign out</p>
+                        </a>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -189,7 +202,7 @@
             {% block body_block %}
 
             {% endblock %}
-            <footer class="page-footer font-small pt-4 footerNav">
+            <footer id="footer" class="page-footer font-small pt-4">
                 <hr class="w-c">
                 <div class="container">
                     <div class="container-fluid justify-content-center text-center text-md-left">

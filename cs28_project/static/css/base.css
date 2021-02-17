@@ -22,12 +22,12 @@ Author: Author: Yee Hou, Teoh (2471020t)
     color: #E1E9EF; /* Bluish white. Use for text */
 }
 
-/* body { */
+body {
     /* set minimum content width when resizing */
-    /* min-width: 1000px; */
-    /* width: auto !important; */
-    /* width: 1000px; for ie6 */
-/* } */
+    min-width: 1000px !important;
+    width: auto !important;
+    width: 1000px; /* for ie6 */
+}
 
 body {
     /* Temporary font... MyGlasgow uses nimbus sans and recommenced font
@@ -41,9 +41,21 @@ body {
     padding-bottom: 100px;
 }
 
-@media (max-width: 1000px) {
-    body {
-        padding-top: 80px;
+@media (max-width: 800px) {
+    .logo {
+        display: none;
+    }
+
+    #logo {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        
+    }
+}
+
+@media (max-width: 550px) {
+    #collapseSidebar {
+        display: none;
     }
 }
 
@@ -87,27 +99,32 @@ body {
 }
 
 /* footer */
-.footerNav {
+
+#footer {
+    position: absolute;
+    width: 100%;
+    height: 3rem;
+    bottom: 0;
     color: #577492;
 }
 
-.footerNav ul {
+#footer ul {
     line-height: 2em;
     list-style-type: none;
 }
 
-.footerNav a:link,
-.footerNav a:visited {
+#footer a:link,
+#footer a:visited {
     text-decoration: none;
     color: rgb(0, 60, 100);
 }
 
-.footerNav a:hover,
-.footerNav a:active {
+#footer a:hover,
+#footer a:active {
     text-decoration: underline;
 }
 
-.footerNav h5 {
+#footer h5 {
     line-height: 2em;
 }
 
@@ -159,7 +176,7 @@ body {
 }
 
 #sidebar ul {
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 #sidebar ul li a {
@@ -182,6 +199,15 @@ body {
     margin-right: 0;
     font-size: 1.8em;
     margin-bottom: 5px;
+}
+
+#sidebar ul li a:hover {
+    color: #fefefe;
+    text-shadow: 0 0 3px #fefefe6c;
+}
+
+#sidebar ul li:hover{
+    background-color: #005398;
 }
 
 #sidebar p {
@@ -214,7 +240,7 @@ body {
     cursor: pointer;
     }
 
-.bars span{
+.bars span {
     display: block;
     position: absolute;
     height: 3px;
@@ -231,6 +257,11 @@ body {
     -o-transition: .25s ease-in-out;
     transition: .25s ease-in-out;
     background: #E1E9EF;
+}
+
+.bars:hover > span {
+    color: #fefefe;
+    box-shadow: 0 0 3px #fefefe6c;
 }
 
 .bars span:nth-child(1) {
@@ -276,6 +307,7 @@ body {
     width: calc(100% - 250px);
     position: absolute;
     min-height: 100vh;
+    padding-bottom: 3rem;
     /* transition: all 0.2s; */
     top: 60;
     right: 0;
@@ -285,6 +317,7 @@ body {
     width: calc(100% - 70px);
     position: absolute;
     min-height: 100vh;
+    padding-bottom: 3rem;
     /* transition: all 0.2s; */
     top: 60;
     right: 0;
