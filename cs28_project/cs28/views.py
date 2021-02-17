@@ -23,8 +23,8 @@ def index(request):
     return render(request, 'index.html')
 
 
-def studentUpload(request):
-    return render(request, 'studentUpload.html')
+def student_upload(request):
+    return render(request, 'student_upload.html')
 
 
 def user_login(request):
@@ -66,4 +66,4 @@ def manage(request):
 @login_required
 def module_grades(request):
     ctx = {"grade": Grade.objects.all()}
-    return render(request, 'module_grades.html', context =ctx)
+    return render(request, 'module_grades.html', context=ctx)
