@@ -175,7 +175,18 @@ Manage
                 "gpa2": "{{ model.finalAward2 }}",
                 "gpa1": "{{ model.finalAward1 }}",
                 "award": "{{ model.foobar }}",
-                "notes": "{{ model.notes }}"
+                "notes": "{{ model.notes }}",
+                "sub": [
+                    {% with model.grade_set.all as grades %}
+                        {% for grade in grades %}
+                            {
+                                "code": "{{ grade.courseCode }}",
+                                "alpha": "{{ grade.alphanum }}",
+                                "ttpt": "{{ SpamEggs }}"
+                            }{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                ]
             }
             {% if not forloop.last %}, {% endif %}
         {% endfor %}
@@ -209,27 +220,9 @@ Manage
                         sortable: true
                     },
                 ]
-                var sub_data = [
-                    // placeholder
-                    {
-                        "code": "FooBar",
-                        "alpha": "BarFoo",
-                        "ttpt": "SpamEggs"
-                    },
-                    {
-                        "code": "FooBar",
-                        "alpha": "BarFoo",
-                        "ttpt": "SpamEggs"
-                    },
-                    {
-                        "code": "FooBar",
-                        "alpha": "BarFoo",
-                        "ttpt": "SpamEggs"
-                    }
-                ]
                 $el.bootstrapTable({
                     columns: columns,
-                    data: sub_data,
+                    data: row.sub,
                 })
             }
         });
