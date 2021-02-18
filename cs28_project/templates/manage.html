@@ -39,6 +39,9 @@
 
 </style>
 
+<!-- jump to page -->
+<link href="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/page-jump-to/bootstrap-table-page-jump-to.min.css" rel="stylesheet">
+
 <!-- editable tables -->
 <link href="https://cdn.jsdelivr.net/gh/Talv/x-editable@develop/dist/bootstrap4-editable/css/bootstrap-editable.css" rel="stylesheet">
 {% endblock %}
@@ -56,8 +59,9 @@ Manage
             <h1>Students</h1>
         </div>
     </div>
-    <div class="row justify-content-between">
-        <div class="col-auto d-flex mt-3">
+    <!-- <div class="row justify-content-between"> -->
+        <!-- <div class="col-auto d-flex mt-3"> -->
+        <div id="toolbar">
             <form class="form-inline">
                 <div class="form-row">
                     <label class="mx-2">Year: </label>
@@ -75,7 +79,8 @@ Manage
                 </div>
             </form>
         </div>
-        <div class="col-auto d-flex mt-3">
+        <!-- </div> -->
+        <!-- <div class="col-auto d-flex mt-3">
             <form class="form-inline">
                 <div class="form-row">
                     <div class="col-auto">
@@ -98,15 +103,24 @@ Manage
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
     <hr class="w-100">
 
     <!-- pagination and sort are client side. -->
+    <!-- notes:
+    - adding data-search-highlight="true" breaks editable fields.
+    - data-reorderable-columns="true" breaks table-->
     <table id="table"
-           data-height="700"
+           class="table"
+
+           data-unique-id="id"
+
+           data-height="650"
+           data-key-events="true"
 
            data-pagination="true"
+           data-show-jump-to="true"
            data-side-pagination="client"
            data-server-sort="false"
 
@@ -116,7 +130,10 @@ Manage
            data-response-handler="responseHandler"
 
            data-toolbar="#toolbar"
+
            data-search="true"
+           data-search-highlight="true"
+
            data-show-refresh="true"
            data-show-toggle="true"
            data-show-fullscreen="true"
@@ -130,9 +147,12 @@ Manage
                 <th data-field="id" data-sortable="true">Matric No.</th>
                 <th data-field="first" data-sortable="true">First Name</th>
                 <th data-field="last" data-sortable="true">Last Name</th>
-                <th data-field="gpa" data-sortable="true" data-editable="true">GPA</th>
-                <th data-field="award" data-sortable="true">Award</th>
-                <th data-field="notes" data-sortable="true">Notes</th>
+                <th data-field="gpa4" data-sortable="true">GPA (4 d.p.)</th>
+                <th data-field="gpa3" data-sortable="true">GPA (3 d.p.)</th>
+                <th data-field="gpa2" data-sortable="true">GPA (2 d.p.)</th>
+                <th data-field="gpa1" data-sortable="true">GPA (1 d.p.)</th>
+                <th data-field="award" data-sortable="true" data-editable="true">Award</th>
+                <th data-field="notes" data-sortable="true" data-editable="true">Notes</th>
             </tr>
         </thead>
     </table>
@@ -150,7 +170,10 @@ Manage
                 "id": "{{ model.matricNo }}",
                 "first": "{{ model.givenNames }}",
                 "last": "{{ model.surname }}",
-                "gpa": "{{ model.finalAward4 }}",
+                "gpa4": "{{ model.finalAward4 }}",
+                "gpa3": "{{ model.finalAward3 }}",
+                "gpa2": "{{ model.finalAward2 }}",
+                "gpa1": "{{ model.finalAward1 }}",
                 "award": "{{ model.foobar }}",
                 "notes": "{{ model.notes }}"
             }
@@ -160,6 +183,10 @@ Manage
 
     $(function () {
         $('#table').bootstrapTable({
+            sortReset: true,
+            sortStable: true,
+            theadClasses: "thead-light",
+            visibleSearch: true,
             data: mydata,
             // subtable
             onExpandRow: function (index, row, $detail) {
@@ -179,8 +206,7 @@ Manage
                     {
                         field: "ttpt",
                         title: "22pt. (4 d.p.)",
-                        sortable: true,
-                        editable: true
+                        sortable: true
                     },
                 ]
                 var sub_data = [
@@ -208,23 +234,33 @@ Manage
             }
         });
     });
+    // $(document).ready( function() { 
 
+    //     $.fn.editable.defaults.mode = 'inline';
+    // });
     $('#table').on('editable-save.bs.table', function(e, field, row, oldValue, $el){
+        console.log(e);
+        console.log(field);
         console.log(row);
+        console.log(oldValue);
+        console.log($el);
         // ajax post call to update db
     });
-
 </script>
+<!-- keystrokes -->
+<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/key-events/bootstrap-table-key-events.min.js"></script>
+
+<!-- jump to page -->
+<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/page-jump-to/bootstrap-table-page-jump-to.min.js"></script>
 
 <!-- editable bootstrap tables -->
 <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/editable/bootstrap-table-editable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Talv/x-editable@develop/dist/bootstrap4-editable/js/bootstrap-editable.min.js"></script>
 
 <!-- bootstrap table export -->
-<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
 
 <!-- dependency for export -->
-<script type="text/javascript" src="tableExport.js"></script>
-<script type="text/javascript" src="jquery.base64.js"></script>
+<!-- <script type="text/javascript" src="jquery.base64.js"></script> -->
 {% endblock %}
