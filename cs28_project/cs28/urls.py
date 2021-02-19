@@ -18,4 +18,5 @@ urlpatterns = [
     path('manage/', views.manage, name='manage'),
     path('course_grades/', views.module_grades, name='course_grades'),
     path('studentUpload/', views.studentUpload, name='studentUpload'),
+    path('calculate/', views.calculate, name='calculate'),
 ]
