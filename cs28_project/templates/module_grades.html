@@ -115,6 +115,7 @@ Course grades
             <th data-field = "first" data-sortable="true">First Name</th>
             <th data-field = "last" data-sortable="true">Last Name</th>
             <th data-field = "an_grade" data-sortable="true">Alphanumeric Grade</th>
+            <th data-field = "ttpt_grade" data-sortable="true">22pt Grade</th>
           </tr>
         </thead>
     </table>
@@ -137,6 +138,7 @@ Course grades
                 "first": "{{ model.matricNo.givenNames }}",
                 "last": "{{ model.matricNo.surname }}",
                 "an_grade": "{{ model.alphanum }}"
+                //"ttpt_grade": "{{ model.matricNo.finalAward4 }}"
         }
 
         {% if not forloop.last %},{% endif %}
