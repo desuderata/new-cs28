@@ -141,6 +141,19 @@ class Student(models.Model):
     def set_is_missing_grades(self, value):
         self.isMissingGrades = value
 
+    def award_as_mc(self):
+        award = self.finalAward4
+        if award >= 18:
+            return "01"
+        elif award >= 15:
+            return "0U"
+        elif award >= 12:
+            return "0L"
+        elif award >= 9:
+            return "33"
+        else:
+            return "Fail"
+
     def is_discretionary(self):
         award = self.finalAward4
         if ((17 < award < 18) or

@@ -14,7 +14,7 @@
 <!-- add to separate css file later -->
 <style>
     .container-width {
-        width: 98%
+        width: 99%
     }
 
     .page-text {
@@ -38,8 +38,9 @@
     }
 
     .text-area {
-        width: 100px;
-        height: 50px;
+        /* width: 150px;
+        height: 100px; */
+        width: 300px;
     }
 
 </style>
@@ -149,20 +150,6 @@ Manage
            data-show-export="true"
 
            data-detail-view="true">
-        <thead>
-            <tr>
-                <th data-field="id" data-sortable="true" data-width="100">Matric No.</th>
-                <th data-field="first" data-sortable="true">First Name</th>
-                <th data-field="last" data-sortable="true">Last Name</th>
-                <th data-field="gpa4" data-sortable="true" data-visible="false">GPA (4 d.p.)</th>
-                <th data-field="gpa3" data-sortable="true" data-visible="false">GPA (3 d.p.)</th>
-                <th data-field="gpa2" data-sortable="true" data-visible="false">GPA (2 d.p.)</th>
-                <th data-field="gpa1" data-sortable="true">GPA (1 d.p.)</th>
-                <th data-field="award" data-sortable="true">Award</th>
-                <th data-field="notes" data-sortable="true" data-editable="true">Notes</th>
-                <th data-field="missingGrades" data-visible="false">Is Missing Grade</th>
-            </tr>
-        </thead>
     </table>
 </div>
 {% endblock %}
@@ -170,26 +157,40 @@ Manage
 {% block scripts %}
 <script>
     var $table = $('#table');
+    
+    var token = '{{ csrf_token }}'
 
-    var grades_dict = {"A1": 22, "A2": 21,
-                       "A3": 20, "A4": 19,
-                       "A5": 18, "B1": 17,
-                       "B2": 16, "B3": 15,
-                       "C1": 14, "C2": 13,
-                       "C3": 12, "D1": 11,
-                       "D2": 10, "D3": 9,
-                       "E1": 8, "E2": 7,
-                       "E3": 6, "F1": 5,
-                       "F2": 4, "F3": 3,
-                       "G1": 2, "G2": 1,
-                       "H": 0, "CW": 0,
-                       "CR": 0, "MV": 0
-                       }
+    const grades_dict = {"A1": 22, "A2": 21,
+                         "A3": 20, "A4": 19,
+                         "A5": 18, "B1": 17,
+                         "B2": 16, "B3": 15,
+                         "C1": 14, "C2": 13,
+                         "C3": 12, "D1": 11,
+                         "D2": 10, "D3": 9,
+                         "E1": 8, "E2": 7,
+                         "E3": 6, "F1": 5,
+                         "F2": 4, "F3": 3,
+                         "G1": 2, "G2": 1,
+                         "H": 0, "CW": -1,
+                         "CR": -1, "MV": -1
+                         }
 
     // populate an array with json for each student
     var mydata = [
         {% for model in student %}
             {
+                "type":
+                    {% if model.updatedAward != "-1" %}
+                        "Overridden"
+                    {% elif model.is_discretionary %}
+                        "Discretionary"
+                    {% elif model.isMissingGrades %}
+                        "Missing Grades"
+                    {% elif model.hasSpecialCode %}
+                        "Special Code"
+                    {% else %}
+                        "&#128077;"
+                    {% endif %},
                 "id": "{{ model.matricNo }}",
                 "first": "{{ model.givenNames }}",
                 "last": "{{ model.surname }}",
@@ -197,13 +198,19 @@ Manage
                 "gpa3": "{{ model.finalAward3 }}",
                 "gpa2": "{{ model.finalAward2 }}",
                 "gpa1": "{{ model.finalAward1 }}",
-                "award": "{{ model.foobar }}",
+                "oAward": "{{ model.award_as_mc }}",
+                "award": 
+                    {% if model.updatedAward == "-1" %}
+                        "{{ model.award_as_mc }}"
+                    {% else %}
+                        "{{ model.updatedAward }}"
+                    {% endif %},
                 "notes": "{{ model.notes }}",
-                "missingGrades": "{{ model.isMissingGrades }}",
                 "sub": [
                     {% with model.grade_set.all as grades %}
                         {% for grade in grades %}
                             {
+                                "gradeId": "{{ grade.matricNo }}",
                                 "code": "{{ grade.courseCode }}",
                                 "alpha": "{{ grade.alphanum }}",
                                 "ttpt": grades_dict["{{ grade.alphanum }}"]
@@ -226,14 +233,114 @@ Manage
             visibleSearch: true,
             data: mydata,
             exportDataType: "all",
+            columns: [
+                {
+                    field: "type",
+                    title: "Type",
+                    sortable: true
+                },
+                {
+                    field: "id",
+                    title: "Matric No.",
+                    sortable: true,
+                    width: 100
+                },
+                {
+                    field: "first",
+                    title: "First Name",
+                    sortable: true
+                },
+                {
+                    field: "last",
+                    title: "Last Name",
+                    sortable: true
+                },
+                {
+                    field: "gpa4",
+                    title: "GPA (4 d.p.)",
+                    sortable: true,
+                    visible: false
+                },
+                {
+                    field: "gpa3",
+                    title: "GPA (3 d.p.)",
+                    sortable: true,
+                    visible: false
+                },
+                {
+                    field: "gpa2",
+                    title: "GPA (2 d.p.)",
+                    sortable: true,
+                    visible: false
+                },
+                {
+                    field: "gpa1",
+                    title: "GPA (1 d.p.)",
+                    sortable: true
+                },
+                {
+                    field: "oAward",
+                    title: "Original Award",
+                    sortable: true,
+                    visible: false
+                },
+                {
+                    field: "award",
+                    title: "Award",
+                    sortable: true,
+                    searchable: false,
+                    editable: {
+                        type: 'select',
+                        mode: 'inline',
+                        source: [
+                            {
+                                text: "Honors Classification",
+                                children: [
+                                    {value: "01", text: "01"},
+                                    {value: "0U", text: "0U"},
+                                    {value: "0L", text: "0L"},
+                                    {value: "33", text: "33"},
+                                    {value: "Fail", text: "Fail"}
+                                ]
+                            },
+                            {
+                                text: "Other Classifications",
+                                children: [
+                                    {value: "GC", text: "GC"},
+                                    {value: "DD-UD", text: "DD-UD"},
+                                    {value: "DD-UM", text: "DD-UM"},
+                                    {value: "DD-UQ", text: "DD-UQ"},
+                                    {value: "TBC", text: "TBC"}
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    field: "notes",
+                    title: "Notes",
+                    sortable: true,
+                    searchable: false,
+                    editable: {
+                        mode: "inline",
+                        inputclass: "text-area",
+                        emptytext: "Add Note"
+                    }
+                }
+            ],
             // subtable
             onExpandRow: function (index, row, $detail) {
                 var $el = $detail.html('<table></table>').find('table')
                 var columns = [
                     {
+                        field: "gradeId",
+                        title: "Matric No. (Grades)",
+                        visible: false
+                    },
+                    {
                         field: "code",
                         title: "Course Code",
-                        sortable: true,
+                        sortable: true
                     },
                     {
                         field: "alpha",
@@ -241,7 +348,7 @@ Manage
                         sortable: true,
                         editable: {
                             type: 'select',
-                            // mode: 'inline',
+                            mode: 'inline',
                             source: [
                                 {
                                     text: "A",
@@ -331,39 +438,67 @@ Manage
             }
         });
     });
-    // $(document).ready( function() { 
-    //     $.fn.editable.defaults.mode = 'inline';
-    // });
 
     // to highlight rows in the future
     function rowStyle(row, index) {
-        console.log(row.notes);
-        if (row.notes === 'Ut enim ad minim veniam') {
+        // console.log(row.notes);
+        if (row.type === 'Overridden') {
             return {
                 classes: 'table-success'
             }
         }
-        if (row.missingGrades === "True") {
+        if (row.type === "Discretionary") {
+            return {
+                classes: 'table-warning'
+            }
+        }
+        if (row.type === "Missing Grades") {
             return {
                 classes: 'table-danger'
             }
         }
-        if (row.ttpt === 2) {
+        if (row.type === "Special Code") {
             return {
-                classes: 'table-danger'
+                classes: 'table-primary'
+            }
+        }
+        if (row.ttpt === -1) {
+            return {
+                classes: 'table-primary'
             }
         }
         return 0
     }
 
+    $('#table').on('editable-shown.bs.table', function(){
+        $('#table').bootstrapTable('resetView')
+    });
+
+    $('#table').on('editable-hidden.bs.table', function(){
+        $('#table').bootstrapTable('resetView')
+    });
+
     // ajax post to update database
     $('#table').on('editable-save.bs.table', function(e, field, row, oldValue, $el){
-        console.log(e);
-        console.log(field);
-        console.log(row);
-        console.log(oldValue);
-        console.log($el);
-        // ajax post call to update db
+        console.log(e);  // event
+        console.log(field);  // field
+        console.log(row);  // row as json
+        console.log(oldValue);  // old value? it just returns a 0
+        console.log($el);  // old value
+        $.ajax({
+            headers: { "X-CSRFToken": token },
+            url:"{% url 'cs28:update' %}",
+            type: "POST",
+            data: {
+                "field": field,
+                "row": JSON.stringify(row),
+                "el": $el
+            },
+            dataType: 'json'
+            // success: function (data) {
+                
+            // }
+        });
     });
 </script>
 
