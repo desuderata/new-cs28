@@ -125,10 +125,24 @@ Course grades
 {% endblock %}
 
 
-<!-- working progress,-->
 {% block scripts %}
 <script>
     var $table = $('#table');
+
+    var grades_dict = {"A1": 22, "A2": 21,
+                       "A3": 20, "A4": 19,
+                       "A5": 18, "B1": 17,
+                       "B2": 16, "B3": 15,
+                       "C1": 14, "C2": 13,
+                       "C3": 12, "D1": 11,
+                       "D2": 10, "D3": 9,
+                       "E1": 8, "E2": 7,
+                       "E3": 6, "F1": 5,
+                       "F2": 4, "F3": 3,
+                       "G1": 2, "G2": 1,
+                       "H": 0, "CW": 0,
+                       "CR": 0, "MV": 0
+                       }
 
     var objects = [
         {% for model in grade %}
@@ -138,7 +152,6 @@ Course grades
                 "first": "{{ model.matricNo.givenNames }}",
                 "last": "{{ model.matricNo.surname }}",
                 "an_grade": "{{ model.alphanum }}"
-                //"ttpt_grade": "{{ model.matricNo.finalAward4 }}"
         }
 
         {% if not forloop.last %},{% endif %}
