@@ -142,7 +142,7 @@ Course grades
                        "G1": 2, "G2": 1,
                        "H": 0, "CW": 0,
                        "CR": 0, "MV": 0
-                       }
+                       };
 
     var objects = [
         {% for model in grade %}
@@ -151,7 +151,8 @@ Course grades
                 "id": "{{ model.matricNo.matricNo }}",
                 "first": "{{ model.matricNo.givenNames }}",
                 "last": "{{ model.matricNo.surname }}",
-                "an_grade": "{{ model.alphanum }}"
+                "an_grade": "{{ model.alphanum }}",
+                "ttpt_grade": grades_dict["{{ model.alphanum }}"]
         }
 
         {% if not forloop.last %},{% endif %}
