@@ -192,6 +192,7 @@ Manage
                         "&#128077;"
                     {% endif %},
                 "id": "{{ model.matricNo }}",
+                "grad": "{{ model.gradYear }}",
                 "first": "{{ model.givenNames }}",
                 "last": "{{ model.surname }}",
                 "gpa4": "{{ model.finalAward4 }}",
@@ -230,9 +231,10 @@ Manage
             sortReset: true,
             sortStable: true,
             theadClasses: "thead-light",
-            visibleSearch: true,
-            data: mydata,
             exportDataType: "all",
+            visibleSearch: true,
+            minimumCountColumns: 2,
+            data: mydata,
             columns: [
                 {
                     field: "type",
@@ -244,6 +246,11 @@ Manage
                     title: "Matric No.",
                     sortable: true,
                     width: 100
+                },
+                {
+                    field: "grad",
+                    title: "Graduation Year",
+                    sortable: true
                 },
                 {
                     field: "first",
