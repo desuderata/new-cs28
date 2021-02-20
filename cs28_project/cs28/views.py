@@ -10,12 +10,13 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from decimal import localcontext, Decimal, ROUND_HALF_UP
 import numpy as np
 
 from cs28.models import Student
 from cs28.models import Grade
+import json
 
 
 def index(request):
@@ -69,8 +70,22 @@ def module_grades(request):
 
 
 @login_required
+def update_field(request):
+    if request.method == "POST" and request.is_ajax():
+
+        field = request.POST.get('field', None)
+        row = json.loads(request.POST.get('row', None))
+
+        data = {
+            'Status': 'success'
+        }
+        return JsonResponse(data)
+    return JsonResponse({'Status': "failure"})
+
+
+@login_required
 def calculate(request):
-    if request.method != "POST":
+    if request.method == "POST":
         if len(request.data) > 0:
             students = Student.object.filter(gradeDataUpdated=True,
                                              gradYear__in=request.data)
