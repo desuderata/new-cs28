@@ -13,10 +13,10 @@ from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from decimal import localcontext, Decimal, ROUND_HALF_UP
 import numpy as np
+import json
 
 from cs28.models import Student
 from cs28.models import Grade
-import json
 
 
 def index(request):
@@ -75,6 +75,34 @@ def update_field(request):
 
         field = request.POST.get('field', None)
         row = json.loads(request.POST.get('row', None))
+        old_value = request.POST.get('el', None)
+
+        # Update grade or award
+        if field == "notes" or field == "award":
+            matric = row["id"]
+            student = Student.objects.get(matricNo=matric)
+
+            if field == "notes":
+                student.notes = row["notes"]
+                student.save()
+
+            if field == "award":
+                award = row["award"]
+                o_award = row["oAward"]
+
+                student.updatedAward = award if award != o_award else "-1"
+                student.save()
+
+        if field == "alpha":
+            # First seven chars of gradeId is matric Num
+            matric = row["gradeId"][:7]
+            code = row["code"]
+
+            student = Student.objects.get(matricNo=matric)
+            grade = Grade.objects.get(matricNo=student, courseCode=code)
+
+            grade.alphanum = row["alpha"]
+            grade.save()
 
         data = {
             'Status': 'success'
